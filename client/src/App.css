@@ -1,0 +1,125 @@
+/* Global */
+*:focus {
+  outline: none;
+}
+
+p {
+  line-height: 1.75;
+}
+
+.title, .subtitle {
+  padding: 8px 0;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.App {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+button {
+  width: 100px;
+  height: 40px;
+  margin: 0 10px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.App aside {
+  width: 50%;
+}
+
+.note-side {
+  padding-right: 30px;
+}
+
+.compose-side {
+  height: 80vh; 
+  padding-left: 30px;
+}
+
+.compose-side.show {
+  display: block;
+}
+
+.compose-side.hide {
+  display: none;
+}
+
+#create-post, 
+#update-post {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.compost_title-input {
+  width: 100%;
+  margin-bottom: 20px;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+  line-height: 1.5;
+}
+
+.compost_note-input {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+  border: none;  
+  resize: none;
+}
+
+.compost_submit {
+  align-self: flex-end;
+}
+
+.single-note {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.single-note_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.single-note_header .note-title {
+  flex: 1;
+  padding-right: 16px;
+}
+
+.single-note_header .header_actions {
+  display: flex;
+  align-items: center;
+}
+
+.single-note_header .edit-btn { 
+  margin-right: 16px;
+}

@@ -1,15 +1,17 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
+
 const indexRouter = require('./routes/index');
 const notesRouter = require('./routes/notes');
 
 const app = express();
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')))
-  .get('/', notesRouter)
+app.use(bodyParser.json());
 
-// app.use('/notes', notesRouter);
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.use('/notes', notesRouter);
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
