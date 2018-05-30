@@ -9,4 +9,6 @@ Host: Heroku
 
 Visit the [demo](https://note-taking-react-express.herokuapp.com/) here.
 
+---
+
 ![alt tag](https://imgur.com/Mo0M3ad.png)
