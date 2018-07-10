@@ -1,14 +1,14 @@
-# note-taking-React-Express
-A note taking app build with React and Node.js/Express.   
-Data was not connected to DB yet, but persist in the memory, reload the page to see.
+# Note app with React, Express/Node and Firebase
+This is a note taking app build with React, Express/Node and Firebase. 
 
-#### Stacks:
-Backend: Node.js, Express  
+#### The stacks:  
 Frontend: React.js, Bulma CSS  
-Host: Heroku
+Backend: Node.js, Express  
+Database: Firebase  
+Host: Heroku (sleeps after 30 mins of inactivity)  
 
-Visit the [demo](https://note-taking-react-express.herokuapp.com/) here. (Heroku server sleeps after 30 mins of inactivity, please wait for a few seconds in order to see)
+Visit the [demo](https://note-taking-react-express.herokuapp.com/) here. It's hosting on a free Heroku server, please wait for a couple seconds in order to see.
 
 ---
 
-![alt tag](https://imgur.com/Mo0M3ad.png)
+![alt tag](https://imgur.com/lRoqopA.png)
