@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const indexRouter = require('./routes/index');
 const notesRouter = require('./routes/notes');
 
+// Init App
 const app = express();
 
 app.use(bodyParser.json());
