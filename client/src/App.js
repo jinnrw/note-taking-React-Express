@@ -4,19 +4,23 @@ import './App.css';
 
 class App extends Component {
   state = {
-    notes: [],
+    notes: {},
     title: '',
     note: '',
     editTitle: '',
     editNote: '',
-    editIndex: '',
+    editKey: '',
     isEditMode: false
   }
 
   componentDidMount() {
     fetch('/notes')
       .then(res => res.json())
-      .then(notes => this.setState({ notes }));
+      .then(data => {
+        // let notes = [];
+        // notes = Object.values(data)
+        this.setState({ notes: data })
+      })
   }
   
   createNote = (e) => {
@@ -33,12 +37,11 @@ class App extends Component {
       })
     })
       .then(res => res.json())
-      .then(notes => this.setState({ notes }))
+      .then(data => this.setState({ notes: data }))
       .then(this.setState({ title: '', note: '' }))
   }
 
-  deleteNote = (index) => {
-    // console.log(index)
+  deleteNote = (key) => {
     fetch('/notes', {
       method: 'DELETE',
       headers: {
@@ -46,20 +49,19 @@ class App extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        index: index
+        key: key
       })
     })
       .then(res => res.json())
-      .then(notes => this.setState({ notes }))
+      .then(data => this.setState({ notes: data }))
   }
 
-  editNote = (index) => {
+  editNote = (key) => {
     this.setState({ 
-      editTitle: this.state.notes[index].title, 
-      editNote: this.state.notes[index].note,
-      editIndex: index,
+      editTitle: this.state.notes[key].title, 
+      editNote: this.state.notes[key].note,
+      editKey: key,
       isEditMode: true });    
-    // console.log(this.state.editIndex)
   }
 
   updateNote = (e) => {
@@ -71,14 +73,14 @@ class App extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        index: this.state.editIndex,
+        key: this.state.editKey,
         title: this.state.editTitle,
         note: this.state.editNote
       })
     })
       .then(res => res.json())
-      .then(notes => this.setState({ notes }))
-      .then(this.setState({ editTitle: '', editNote: '', editIndex: '', isEditMode: false }))
+      .then(data => this.setState({ notes: data }))
+      .then(this.setState({ editTitle: '', editNote: '', editKey: '', isEditMode: false }))    
   }
 
   cancelUpdate = (e) => {
@@ -91,11 +93,28 @@ class App extends Component {
   }
 
   render() {
+
+    const noteKey = Object.keys(this.state.notes);
+    const noteValues = Object.values(this.state.notes);
+
     return (
       <div className="App">
         <aside className="note-side">
           <h1 className="title">Notes</h1>
-          {this.state.notes.map( (note, i) =>
+          {noteValues.map((note, i) =>
+            <div key={noteKey[i]} className="single-note">
+              <div className="single-note_header subtitle">
+                <h2 className="note-title">{note.title}</h2>
+                <div className="header_actions">
+                  <a className="edit-btn" title="Edit" onClick={() => {this.editNote(noteKey[i])}}>Edit</a>
+                  <a className="delete" title="Delete" onClick={() => {this.deleteNote(noteKey[i])}}>Delete</a>
+                </div>
+              </div>
+              <p>{note.note}</p>
+            </div>
+          )}
+
+          {/* {this.state.notes.map( (note, i) =>
             <div key={i} className="single-note">
               <div className="single-note_header subtitle">
                 <h2 className="note-title">{note.title}</h2>
@@ -107,7 +126,7 @@ class App extends Component {
               </div>
               <p>{note.note}</p>
             </div>
-          )}
+          )} */}
         </aside>
         <aside className={`compose-side create-post ${!this.state.isEditMode ? 'show': 'hide'}`}>
           <form id="create-post" method="POST">
